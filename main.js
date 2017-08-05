@@ -1,5 +1,3 @@
-var resultContainer = document.getElementById("result");
-var submitButton = document.getElementById("submit-btn");
 var resetButton = document.getElementById("reset-btn");
 
 function convertCtoF(temp){
@@ -15,8 +13,7 @@ function convertInputTemp(temp, scale){
 }
 
 function getConvertToScale(){
-	var radioCel = document.getElementById("radio-cel").checked;
-	return radioCel ? "C" : "F"
+	return document.querySelector('input[name="conversion-radio"]:checked').value
 }
 
 function getTemp(){
@@ -25,13 +22,11 @@ function getTemp(){
 
 function writeToDom(temp, color){
 	var resultContainer = document.getElementById("result");
-	var domId = '<h2 id="'+color+'">'
-	var domString = domId + temp + '</h2>'
+	var domId = '<h2 id="'+color+'">' // <h2>id="red"</h2>
+	var domString = domId + temp + '</h2>' //<h2>id="red"</h2>-17.22</h2>
 	resultContainer.innerHTML = domString
 
 }
-
-
 
 function getColor(temp, scale){
 	if ((scale === "C" && temp > 32) || (scale === "F" && temp > 90)) {
@@ -49,13 +44,16 @@ function converter() {
 	var convertedTemp = convertInputTemp(temp, scale);
 	var color = getColor(convertedTemp, scale);
 	writeToDom(convertedTemp, color);
-	return ("" + color + " " + convertedTemp + "");
 }
 
-function convertButton(){
-	console.log(converter());
+document.onkeydown = function (e) {
+    if (e.keyCode === 13) {
+        converter();
+    }
 }
 
+// document.getElementById("submit-btn").onclick = function () {
+// 	converter();	
+// }
 
-
-
+document.getElementById("submit-btn").addEventListener("click", converter)
