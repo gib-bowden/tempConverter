@@ -9,12 +9,12 @@
 		<div id="form-fields">
 			<form>
 				<label for="temp-input">Temperature</label><br>
-				<input type="text" name="temp-input"><br>
+				<input type="text" name="temp-input" id="temp-input" ><br>
 				<label for="conversion-radio">Conversion</label><br>
-				<input type="radio" name="conversion-radio" value="F">Fahrenheit<br>
-				<input type="radio" name="conversion-radio" value="C">Celsius<br>
-				<button type="submit">Convert</button>	
-				<button type="reset">Cancel</button>	
+				<input type="radio" name="conversion-radio" value="F" class="radio">Fahrenheit<br>
+				<input type="radio" name="conversion-radio" class="scale" value="C" class="radio">Celsius<br>
+				<button id="submit-btn" type="button" >Convert </button>	
+				<button type="reset">Clear</button>	
 			</form>
 		</div>
 		<div id="result">			
