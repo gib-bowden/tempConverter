@@ -1,7 +1,5 @@
-var tempInput = document.getElementById("temp-input");
-var scaleInput = document.getElementById("temp-input");
 var resultContainer = document.getElementById("result");
-var submitButton = document.getElementById("submit-btn")
+var submitButton = document.getElementById("submit-btn");
 var resetButton = document.getElementById("reset-btn");
 
 function convertCtoF(temp){
@@ -16,6 +14,25 @@ function convertInputTemp(temp, scale){
 	return scale === "F" ? convertCtoF(temp).toFixed(2) : convertFtoC(temp).toFixed(2)
 }
 
+function getConvertToScale(){
+	var radioCel = document.getElementById("radio-cel").checked;
+	return radioCel ? "C" : "F"
+}
+
+function getTemp(){
+	return document.getElementById("temp-input").value;
+}
+
+function writeToDom(temp, color){
+	var resultContainer = document.getElementById("result");
+	var domId = '<h2 id="'+color+'">'
+	var domString = domId + temp + '</h2>'
+	resultContainer.innerHTML = domString
+
+}
+
+
+
 function getColor(temp, scale){
 	if ((scale === "C" && temp > 32) || (scale === "F" && temp > 90)) {
 		return "red";
@@ -26,10 +43,19 @@ function getColor(temp, scale){
 	}
 }
 
-function controller(temp, scale) {
+function converter() {
+	var temp = getTemp();
+	var scale = getConvertToScale();
 	var convertedTemp = convertInputTemp(temp, scale);
 	var color = getColor(convertedTemp, scale);
+	writeToDom(convertedTemp, color);
 	return ("" + color + " " + convertedTemp + "");
 }
 
-console.log(controller(32,"C"));
+function convertButton(){
+	console.log(converter());
+}
+
+
+
+
