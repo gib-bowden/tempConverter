@@ -1,12 +1,10 @@
-var resetButton = document.getElementById("reset-btn");
+var convertFtoC = (temp) => {
+		return (temp - 32) / (9/5); 
+		}
 
-function convertCtoF(temp){
-	return (temp * (9/5)) + 32; 
-}
-
-function convertFtoC(temp){
-	return (temp - 32) / (9/5); 
-}
+var convertCtoF = (temp) => {
+		return (temp * (9/5)) + 32; 
+		}
 
 function convertInputTemp(temp, scale){
 	return scale === "F" ? convertCtoF(temp).toFixed(2) : convertFtoC(temp).toFixed(2)
